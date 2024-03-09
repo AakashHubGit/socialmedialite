@@ -1,72 +1,72 @@
 /* Registration Form Styling */
-.formContainer {
-    width: 360px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-    padding: 20px;
-  }
-  
-  .formContainer h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-    text-align: center;
-  }
-  
-  .formContainer label {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 5px;
-  }
-  
-  .formContainer input {
-    width: 320px;
-    height: 40px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    font-size: 16px;
-  }
-  
-  .formContainer button {
-    width: 100%;
-    height: 50px;
-    border-radius: 8px;
-    border: none;
-    background-color: dodgerblue;
-    color: white;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .formContainer button:hover {
-    background-color: #007bff;
-  }
-  
-  /* Error message styling */
-  .formContainer span {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-  }
-  
-  /* Additional styling */
-  .formContainer p {
-    font-size: 16px;
-    text-align: center;
-    margin-top: 15px;
-  }
-  
-  .formContainer p a {
-    color: dodgerblue;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .formContainer p a:hover {
-    color: #0056b3;
-  }
-  
+.registerContainer {
+  width: 360px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #292929; /* Dark background color */
+  padding: 20px;
+  color: #eee; /* Light text color */
+}
+
+.registerContainer h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.registerContainer label {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.registerContainer input {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid #555; /* Darker border color */
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  background-color: #444; /* Darker background color */
+  color: #eee; /* Light text color */
+}
+
+.registerContainer button {
+  width: 100%;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  background-color: #007bff; /* Button color */
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.registerContainer button:hover {
+  background-color: #0056b3; /* Darker button color on hover */
+}
+
+/* Error message styling */
+.registerContainer span {
+  color: #ff6961; /* Red color for error messages */
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Additional styling */
+.registerContainer p {
+  font-size: 16px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.registerContainer p a {
+  color: #007bff; /* Link color */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.registerContainer p a:hover {
+  color: #0056b3; /* Darker link color on hover */
+}

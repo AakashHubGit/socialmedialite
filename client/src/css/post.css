@@ -25,10 +25,36 @@
 .addCommentContainer button {
   width: calc(100% - 20px); /* Full width minus padding */
   padding: 10px; /* Added padding for better appearance */
-  border: none;
+  border: 1px solid #666; /* Dark border */
   border-radius: 5px;
   margin-bottom: 10px; /* Added margin-bottom for spacing */
   box-sizing: border-box; /* Include padding in width calculation */
+  background-color: #444; /* Dark background color */
+  color: #eee; /* Light text color */
+}
+
+.addCommentContainer input::placeholder {
+  color: #ccc; /* Lighter placeholder text color */
+}
+
+.addCommentContainer input:focus {
+  outline: none; /* Remove outline on focus */
+  border-color: #007bff; /* Border color on focus */
+}
+
+.addCommentContainer button {
+  width: calc(100% - 20px); /* Full width minus padding */
+  padding: 10px; /* Added padding for better appearance */
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Button color */
+  color: #fff; /* Button text color */
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.addCommentContainer button:hover {
+  background-color: #0056b3; /* Darker button color on hover */
 }
 
 .comment {
@@ -53,14 +79,26 @@
   font-size: 0.8rem;
 }
 
-.comment .commentMeta .username {
+.commentMeta .username {
   color: #007bff; /* Change color of username */
 }
 
+
 .deleteCommentButton {
   font-size: 1rem; /* Adjusted font size */
-  box-sizing: border-box; /* Include padding in width calculation */
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Light text color */
+  border: none;
+  padding: 5px 10px; /* Added padding for better appearance */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.deleteCommentButton:hover {
+  background-color: #555; /* Darker background color on hover */
+}
+
 
 @media (max-width: 500px) {
   .rightSide .addCommentContainer {

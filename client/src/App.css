@@ -10,32 +10,28 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif; /* Modern font family */
-  background-color: #f4f4f4;
+  background-color: #222; /* Dark background */
+  color: #eee; /* Light text color */
 }
 
-
-
 .header {
-  background-color: #007bff;
+  background-color: #333; /* Darker header */
   color: #fff;
   padding: 20px;
   text-align: center;
 }
 
-
-
 /* NAVBAR */
-
 .navbar {
   width: 100%;
   height: 70px;
-  background-color: #007bff;
+  background-color: #333; /* Darker navbar */
   padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: 'Roboto', sans-serif;
-  color: #fff;
+  color: #eee; /* Light text color */
 }
 
 .navbar .links {
@@ -46,13 +42,13 @@ body {
 
 .navbar .links a {
   text-decoration: none;
-  color: #fff;
+  color: #eee; /* Light text color */
   margin-right: 20px;
   transition: color 0.3s ease;
 }
 
 .navbar .links a:hover {
-  color: #ffc107;
+  color: #ffc107; /* Highlight color */
 }
 
 .navbar .loggedInContainer {
@@ -71,13 +67,13 @@ body {
   margin-right: 20px;
   cursor: pointer;
   background-color: transparent;
-  border: 2px solid #fff;
+  border: 2px solid #eee; /* Light border */
   border-radius: 5px;
-  color: #fff;
+  color: #eee; /* Light text color */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar .loggedInContainer button:hover {
-  background-color: #fff;
-  color: #007bff;
+  background-color: #eee; /* Light background on hover */
+  color: #333; /* Darker text color on hover */
 }

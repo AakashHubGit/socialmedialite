@@ -1,5 +1,5 @@
 import React, {  useEffect } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -40,28 +40,38 @@ function CreatePost() {
     onSubmit={onSubmit}
     validationSchema={validationSchema}
   >
-    <Form className="formContainer">
-      <label htmlFor="title">Title:</label>
-      <ErrorMessage name="title" component="span" />
-      <Field
-        autoComplete="off"
-        id="title"
-        name="title"
-        placeholder="Enter the title"
-      />
-      
-      <label htmlFor="postText">Description:</label>
-      <ErrorMessage name="postText" component="span" />
-      <Field
-        as="textarea"
-        autoComplete="off"
-        id="postText"
-        name="postText"
-        placeholder="Write your post here..."
-      />
+    {({ values, handleChange, handleSubmit, errors }) => (
+      <form onSubmit={handleSubmit} className="formContainer">
+        <div className="inputGroup">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={values.title}
+            onChange={handleChange}
+            placeholder="Enter the title"
+            className={errors.title ? "inputError" : ""}
+          />
+          {errors.title && <span className="errorMessage">{errors.title}</span>}
+        </div>
 
-      <button type="submit">Create Post</button>
-    </Form>
+        <div className="inputGroup">
+          <label htmlFor="postText">Description</label>
+          <textarea
+            id="postText"
+            name="postText"
+            value={values.postText}
+            onChange={handleChange}
+            placeholder="Write your post here..."
+            className={errors.postText ? "inputError" : ""}
+          />
+          {errors.postText && <span className="errorMessage">{errors.postText}</span>}
+        </div>
+
+        <button type="submit" className="submitButton">Create Post</button>
+      </form>
+    )}
   </Formik>
 </div>
 

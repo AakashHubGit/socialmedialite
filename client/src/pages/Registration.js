@@ -1,4 +1,5 @@
 import React from "react";
+import { Link,useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -9,7 +10,7 @@ function Registration() {
     username: "",
     password: "",
   };
-
+  let navigate = useNavigate();
   const validationSchema = Yup.object().shape({
     username: Yup.string().min(3).max(15).required(),
     password: Yup.string().min(4).max(20).required(),
@@ -18,6 +19,8 @@ function Registration() {
   const onSubmit = (data) => {
     axios.post("https://social-media-lite.onrender.com/auth", data).then(() => {
       console.log(data);
+    }).then((response)=>{
+      navigate("/login");
     });
   };
 
@@ -28,7 +31,7 @@ function Registration() {
     onSubmit={onSubmit}
     validationSchema={validationSchema}
   >
-    <Form className="formContainer">
+    <Form className="registerContainer">
       <h2>Create an Account</h2>
       <label htmlFor="username">Username:</label>
       <ErrorMessage name="username" component="span" />
@@ -48,7 +51,7 @@ function Registration() {
         placeholder="Your Password..."
       />
       <button type="submit">Register</button>
-      <p>Already have an account? <a href="/login">Login here</a>.</p>
+      <p>Already have an account? <Link to="/login">Login here</Link>.</p>
     </Form>
   </Formik>
 </div>

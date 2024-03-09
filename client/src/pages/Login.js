@@ -50,7 +50,6 @@ function Login() {
       }}
     />
     <button onClick={login}>Login</button>
-    <p className="forgotPassword">Forgot your password?</p>
   </div>
 </div>
 
