@@ -1,0 +1,62 @@
+/* CREATE POST PAGE CSS */
+
+.createPostPage {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  height: 100%;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9; /* Light background color */
+}
+
+.formContainer {
+  width: 80%;
+  max-width: 500px; /* Adjusted maximum width for better responsiveness */
+  padding: 20px;
+  border: 1px solid #ccc; /* Soft border */
+  border-radius: 10px;
+  background-color: #fff; /* White background */
+}
+
+.formContainer label {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.formContainer input,
+.formContainer textarea {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.formContainer textarea {
+  height: 150px; /* Increased height for description field */
+}
+
+.formContainer button {
+  height: 40px;
+  border: none;
+  background-color: dodgerblue;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.formContainer button:hover {
+  background-color: #007bff;
+}
+
+span {
+  color: red;
+  font-size: 14px;
+}

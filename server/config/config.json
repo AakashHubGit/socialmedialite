@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "1234",
+    "database": "socialmedialite",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "ur5c4b8sxndmqc1h",
+    "password": "OypvJvSr6jQrnm5EPIN0",
+    "database": "balqyw5xykithfe3ifmj",
+    "host": "balqyw5xykithfe3ifmj-mysql.services.clever-cloud.com",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "ur5c4b8sxndmqc1h",
+    "password": "OypvJvSr6jQrnm5EPIN0",
+    "database": "balqyw5xykithfe3ifmj",
+    "host": "balqyw5xykithfe3ifmj-mysql.services.clever-cloud.com",
+    "dialect": "mysql"
+  }
+}

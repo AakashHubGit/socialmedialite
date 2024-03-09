@@ -1,0 +1,79 @@
+.container{
+  margin: 20px auto;
+}
+
+.post {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #f8f9fa; /* Light gray background */
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.post:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  transform: translateY(-5px);
+}
+
+.post .title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  background-color: #ffecb3; /* Light yellow background */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.post .body {
+  color: #666;
+  margin-top: 20px;
+  background-color: #ffffff; /* White background */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.post .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  background-color: #f8f9fa; /* Light gray background */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.footer .username {
+  color: #007bff;
+  font-size: 16px;
+}
+
+.footer .buttons {
+  display: flex;
+  align-items: center;
+}
+
+.footer .likeBttn,
+.footer .unlikeBttn {
+  font-size: 18px;
+  margin-right: 10px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.footer .likeBttn:hover,
+.footer .unlikeBttn:hover {
+  color: #ff6d00;
+}
+
+.footer label {
+  font-size: 16px;
+  color: #666;
+}
+
+.footer label:hover {
+  color: #ff6d00;
+}

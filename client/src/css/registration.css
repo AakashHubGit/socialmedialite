@@ -1,0 +1,72 @@
+/* Registration Form Styling */
+.formContainer {
+    width: 360px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  .formContainer h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .formContainer label {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .formContainer input {
+    width: 320px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .formContainer button {
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    border: none;
+    background-color: dodgerblue;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .formContainer button:hover {
+    background-color: #007bff;
+  }
+  
+  /* Error message styling */
+  .formContainer span {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Additional styling */
+  .formContainer p {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .formContainer p a {
+    color: dodgerblue;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .formContainer p a:hover {
+    color: #0056b3;
+  }
+  
