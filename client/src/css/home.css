@@ -1,4 +1,4 @@
-.container{
+.container {
   margin: 20px auto;
 }
 
@@ -38,8 +38,8 @@
 
 .post .footer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column; /* Adjusted to column layout for better vertical alignment */
+  align-items: flex-start; /* Adjusted alignment */
   margin-top: 20px;
   background-color: #f8f9fa; /* Light gray background */
   padding: 10px;
@@ -48,17 +48,18 @@
 
 .footer .username {
   color: #007bff;
-  font-size: 16px;
+  font-size: 20px; /* Increased font size */
 }
 
 .footer .buttons {
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 
 .footer .likeBttn,
 .footer .unlikeBttn {
-  font-size: 18px;
+  font-size: 24px; /* Increased font size */
   margin-right: 10px;
   color: #007bff;
   cursor: pointer;
@@ -76,4 +77,34 @@
 
 .footer label:hover {
   color: #ff6d00;
+}
+
+@media (max-width: 500px) {
+  .post {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .post .title {
+    font-size: 18px;
+    padding: 5px;
+  }
+
+  .post .body {
+    padding: 10px;
+  }
+
+  .footer .username {
+    font-size: 18px; /* Adjusted font size */
+  }
+
+  .footer .likeBttn,
+  .footer .unlikeBttn {
+    font-size: 22px; /* Adjusted font size */
+    margin-right: 5px; /* Adjusted margin right */
+  }
+
+  .footer label {
+    font-size: 14px;
+  }
 }
