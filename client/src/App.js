@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes,BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes,BrowserRouter as Router,Link } from "react-router-dom";
 import Home from "./pages/Home";
 import CreatePost from "./pages/CreatePost";
 import Post from "./pages/Post";
@@ -54,13 +54,13 @@ function App() {
             <div className="links">
               {!authState.status ? (
                 <>
-                  <a href="/login">Login</a>
-                  <a href="/registration"> Registration</a>
+                  <Link to="/login">Login</Link>
+                  <Link to="/registration">Registration</Link>
                 </>
               ) : (
                 <>
-                  <a href="/"> Home Page</a>
-                  <a href="/createpost"> Create A Post</a>
+                  <Link to="/"> Home Page</Link>
+                  <Link to="/createpost">Create Post</Link>
                 </>
               )}
             </div>
