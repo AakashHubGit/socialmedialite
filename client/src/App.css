@@ -1,37 +1,38 @@
+/* App container */
 .App {
   width: 100%;
-  height: auto;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  background-color: #f8f9fa; /* Light background */
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif; /* Modern font family */
-  background-color: #222; /* Dark background */
-  color: #eee; /* Light text color */
 }
 
+/* Header */
 .header {
-  background-color: #333; /* Darker header */
+  background-color: #343a40; /* Darker header */
   color: #fff;
   padding: 20px;
   text-align: center;
 }
 
-/* NAVBAR */
+/* Navbar */
 .navbar {
   width: 100%;
   height: 70px;
-  background-color: #333; /* Darker navbar */
+  background-color: #343a40; /* Darker navbar */
   padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: 'Roboto', sans-serif;
-  color: #eee; /* Light text color */
+  color: #fff;
 }
 
 .navbar .links {
@@ -42,7 +43,7 @@ body {
 
 .navbar .links a {
   text-decoration: none;
-  color: #eee; /* Light text color */
+  color: #fff;
   margin-right: 20px;
   transition: color 0.3s ease;
 }
@@ -66,14 +67,13 @@ body {
   height: 40px;
   margin-right: 20px;
   cursor: pointer;
-  background-color: transparent;
-  border: 2px solid #eee; /* Light border */
+  background-color: #ffc107; /* Highlight color */
+  border: none;
   border-radius: 5px;
-  color: #eee; /* Light text color */
+  color: #343a40; /* Darker text color */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .navbar .loggedInContainer button:hover {
-  background-color: #eee; /* Light background on hover */
-  color: #333; /* Darker text color on hover */
+  background-color: #ffdb7a; /* Lighter highlight color on hover */
 }

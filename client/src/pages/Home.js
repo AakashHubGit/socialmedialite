@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import {ThumbUpAltOutlined} from "@mui/icons-material";
+import { ThumbUpAltOutlined } from "@mui/icons-material";
+import { CircularProgress } from "@mui/material"; // Import CircularProgress from Material-UI
 import "../css/home.css";
 
 function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);
+  const [loading, setLoading] = useState(true); // State to track loading status
+  const [sortByLikes, setSortByLikes] = useState(false);
+  const [usernameFilter, setUsernameFilter] = useState('');
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -26,6 +29,11 @@ function Home() {
               return like.PostId;
             })
           );
+          setLoading(false); // Set loading to false when data is fetched
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
+          setLoading(false); // Set loading to false in case of error
         });
     }
   }, [navigate]);
@@ -66,38 +74,76 @@ function Home() {
       });
   };
 
+  if (loading) {
+    // Render circular loading indicator while data is being fetched
+    return (
+      <div className="loader-container">
+        <CircularProgress />
+      </div>
+    );
+  }
+
+  const sortedPosts = [...listOfPosts].sort((a, b) => {
+    if (sortByLikes) {
+      return b.Likes.length - a.Likes.length;
+    }
+    return 0;
+  });
+
+  const filteredPosts = sortedPosts.filter(post =>
+    post.username.toLowerCase().includes(usernameFilter.toLowerCase())
+  );
+
   return (
     <div className="container">
-      {listOfPosts.map((value, key) => {
+      <div className="filters">
+        <div className="filter">
+          <label htmlFor="sortByLikes" className="sortLabel">Sort by Likes:</label>
+          <input
+            type="checkbox"
+            id="sortByLikes"
+            checked={sortByLikes}
+            onChange={() => setSortByLikes(!sortByLikes)}
+          />
+        </div>
+        <div className="filter">
+          <label htmlFor="usernameFilter" className="filterLabel">Filter by Username:</label>
+          <input
+            type="text"
+            id="usernameFilter"
+            value={usernameFilter}
+            onChange={e => setUsernameFilter(e.target.value)}
+            placeholder="Enter username"
+            className="filterInput"
+          />
+        </div>
+      </div>
+      {filteredPosts.map((value, key) => {
         return (
-          <div key={key} className="post">
-            <div className="title"> {value.title} </div>
-            <div
-              className="body"
-              onClick={() => {
-                navigate(`/post/${value.id}`);
-              }}
-            >
-              {value.postText}
-            </div>
-            <div className="footer">
-              <div className="username">
-                <Link to={`/profile/${value.UserId}`}> {value.username} </Link>
+          <Link to={`/post/${value.id}`} key={key} className="post-link">
+            <div className="post">
+              <div className="title">{value.title}</div>
+              <div className="body">
+                {value.postText}
               </div>
-              <div className="buttons">
-                <ThumbUpAltOutlined
-                  onClick={() => {
-                    likeAPost(value.id);
-                  }}
-                  className={
-                    likedPosts.includes(value.id) ? "unlikeBttn" : "likeBttn"
-                  }
-                />
-
-                <label> {value.Likes.length}</label>
+              <div className="footer">
+                <div className="username">
+                  <Link to={`/profile/${value.UserId}`}>{value.username}</Link>
+                </div>
+                <div className="buttons">
+                  <ThumbUpAltOutlined
+                    onClick={() => {
+                      likeAPost(value.id);
+                    }}
+                    className={
+                      likedPosts.includes(value.id) ? 'unlikeBttn' : 'likeBttn'
+                    }
+                  />
+                  <label>{value.Likes.length}</label>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>
