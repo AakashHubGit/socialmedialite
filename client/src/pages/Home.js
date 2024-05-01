@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { ThumbUpAltOutlined } from "@mui/icons-material";
-import { CircularProgress } from "@mui/material"; // Import CircularProgress from Material-UI
+import { ThumbUpAltOutlined, ThumbUpAlt } from "@mui/icons-material";
+import { CircularProgress } from "@mui/material";
 import "../css/home.css";
 
 function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);
-  const [loading, setLoading] = useState(true); // State to track loading status
+  const [loading, setLoading] = useState(true);
   const [sortByLikes, setSortByLikes] = useState(false);
-  const [usernameFilter, setUsernameFilter] = useState('');
+  const [usernameFilter, setUsernameFilter] = useState("");
+  const [showLikedPosts, setShowLikedPosts] = useState(false);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -22,23 +23,24 @@ function Home() {
           headers: { accessToken: localStorage.getItem("accessToken") },
         })
         .then((response) => {
-          const reversedPosts = response.data.listOfPosts.reverse(); // Reverse the order of posts
+          const reversedPosts = response.data.listOfPosts.reverse();
           setListOfPosts(reversedPosts);
           setLikedPosts(
             response.data.likedPosts.map((like) => {
               return like.PostId;
             })
           );
-          setLoading(false); // Set loading to false when data is fetched
+          setLoading(false);
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error fetching data:", error);
-          setLoading(false); // Set loading to false in case of error
+          setLoading(false);
         });
     }
   }, [navigate]);
 
-  const likeAPost = (postId) => {
+  const likeAPost = (e, postId) => {
+    e.preventDefault(); // Prevent default behavior of link click
     axios
       .post(
         "https://social-media-lite.onrender.com/likes",
@@ -75,7 +77,6 @@ function Home() {
   };
 
   if (loading) {
-    // Render circular loading indicator while data is being fetched
     return (
       <div className="loader-container">
         <CircularProgress />
@@ -83,14 +84,21 @@ function Home() {
     );
   }
 
-  const sortedPosts = [...listOfPosts].sort((a, b) => {
+  // Apply filter for liked posts if showLikedPosts is true
+  let filteredPosts = showLikedPosts
+    ? listOfPosts.filter((post) => likedPosts.includes(post.id))
+    : listOfPosts;
+
+  // Sort the filtered posts by likes if sortByLikes is true
+  const sortedPosts = [...filteredPosts].sort((a, b) => {
     if (sortByLikes) {
       return b.Likes.length - a.Likes.length;
     }
     return 0;
   });
 
-  const filteredPosts = sortedPosts.filter(post =>
+  // Apply username filter
+  filteredPosts = sortedPosts.filter((post) =>
     post.username.toLowerCase().includes(usernameFilter.toLowerCase())
   );
 
@@ -98,7 +106,9 @@ function Home() {
     <div className="container">
       <div className="filters">
         <div className="filter">
-          <label htmlFor="sortByLikes" className="sortLabel">Sort by Likes:</label>
+          <label htmlFor="sortByLikes" className="sortLabel">
+            Sort by Likes:
+          </label>
           <input
             type="checkbox"
             id="sortByLikes"
@@ -107,12 +117,25 @@ function Home() {
           />
         </div>
         <div className="filter">
-          <label htmlFor="usernameFilter" className="filterLabel">Filter by Username:</label>
+          <label htmlFor="showLikedPosts" className="filterLabel">
+            Show Liked Posts:
+          </label>
+          <input
+            type="checkbox"
+            id="showLikedPosts"
+            checked={showLikedPosts}
+            onChange={() => setShowLikedPosts(!showLikedPosts)}
+          />
+        </div>
+        <div className="filter">
+          <label htmlFor="usernameFilter" className="filterLabel">
+            Filter by Username:
+          </label>
           <input
             type="text"
             id="usernameFilter"
             value={usernameFilter}
-            onChange={e => setUsernameFilter(e.target.value)}
+            onChange={(e) => setUsernameFilter(e.target.value)}
             placeholder="Enter username"
             className="filterInput"
           />
@@ -123,22 +146,27 @@ function Home() {
           <Link to={`/post/${value.id}`} key={key} className="post-link">
             <div className="post">
               <div className="title">{value.title}</div>
-              <div className="body">
-                {value.postText}
-              </div>
+              <div className="body">{value.postText}</div>
               <div className="footer">
                 <div className="username">
                   <Link to={`/profile/${value.UserId}`}>{value.username}</Link>
                 </div>
                 <div className="buttons">
-                  <ThumbUpAltOutlined
-                    onClick={() => {
-                      likeAPost(value.id);
-                    }}
-                    className={
-                      likedPosts.includes(value.id) ? 'unlikeBttn' : 'likeBttn'
-                    }
-                  />
+                  {likedPosts.includes(value.id) ? (
+                    <ThumbUpAlt
+                      onClick={(e) => {
+                        likeAPost(e, value.id);
+                      }}
+                      className="likeBttn"
+                    />
+                  ) : (
+                    <ThumbUpAltOutlined
+                      onClick={(e) => {
+                        likeAPost(e, value.id);
+                      }}
+                      className="likeBttn"
+                    />
+                  )}
                   <label>{value.Likes.length}</label>
                 </div>
               </div>

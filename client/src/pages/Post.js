@@ -5,22 +5,26 @@ import { AuthContext } from "../helpers/AuthContext";
 import "../css/post.css";
 
 function Post() {
-  let { id } = useParams();
+  const { id } = useParams();
+  const { authState } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const [postObject, setPostObject] = useState({});
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-  const { authState } = useContext(AuthContext);
-
-  let navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://social-media-lite.onrender.com/posts/byId/${id}`).then((response) => {
-      setPostObject(response.data);
-    });
+    axios
+      .get(`https://social-media-lite.onrender.com/posts/byId/${id}`)
+      .then((response) => {
+        setPostObject(response.data);
+      });
 
-    axios.get(`https://social-media-lite.onrender.com/comments/${id}`).then((response) => {
-      setComments(response.data);
-    });
+    axios
+      .get(`https://social-media-lite.onrender.com/comments/${id}`)
+      .then((response) => {
+        setComments(response.data);
+      });
   }, [id]);
 
   const addComment = () => {
@@ -50,6 +54,7 @@ function Post() {
         }
       });
   };
+
   const deleteComment = (id) => {
     axios
       .delete(`https://social-media-lite.onrender.com/comments/${id}`, {
@@ -75,103 +80,91 @@ function Post() {
   };
 
   const editPost = (option) => {
+    let newText;
     if (option === "title") {
-      let newTitle = prompt("Enter New Title:");
+      newText = prompt("Enter New Title:");
       axios.put(
         "https://social-media-lite.onrender.com/posts/title",
         {
-          newTitle: newTitle,
+          newTitle: newText,
           id: id,
         },
         {
           headers: { accessToken: localStorage.getItem("accessToken") },
         }
       );
-
-      setPostObject({ ...postObject, title: newTitle });
     } else {
-      let newPostText = prompt("Enter New Text:");
+      newText = prompt("Enter New Text:");
       axios.put(
         "https://social-media-lite.onrender.com/posts/postText",
         {
-          newText: newPostText,
+          newText: newText,
           id: id,
         },
         {
           headers: { accessToken: localStorage.getItem("accessToken") },
         }
       );
-
-      setPostObject({ ...postObject, postText: newPostText });
     }
+    setPostObject({ ...postObject, [option]: newText });
   };
 
   return (
     <div className="postPage">
-      <div className="leftSide">
-        <div className="post" id="individual">
-          <div
-            className="title"
-            onClick={() => {
-              if (authState.username === postObject.username) {
-                editPost("title");
+      <div className="postContainer">
+        <div className="postCard">
+          <div className="postHeader">
+            <div
+              className="title"
+              onClick={() =>
+                authState.username === postObject.username && editPost("title")
               }
-            }}
-          >
-            {postObject.title}
+            >
+              {postObject.title}
+            </div>
+            <div className="username">{postObject.username}</div>
           </div>
           <div
             className="body"
-            onClick={() => {
-              if (authState.username === postObject.username) {
-                editPost("body");
-              }
-            }}
+            onClick={() =>
+              authState.username === postObject.username && editPost("body")
+            }
           >
             {postObject.postText}
           </div>
-          <div className="footer">
-            {postObject.username}
-            {authState.username === postObject.username && (
-              <button className="deletePostButton"
-                onClick={() => {
-                  deletePost(postObject.id);
-                }}
-              >
-                {" "}
-                Delete Post
-              </button>
-            )}
+          {authState.username === postObject.username && (
+            <button
+              className="deleteButton"
+              onClick={() => deletePost(postObject.id)}
+            >
+              Delete Post
+            </button>
+          )}
+        </div>
+        <div className="commentContainer">
+          <div className="addCommentContainer">
+            <input
+              type="text"
+              placeholder="Add a comment..."
+              value={newComment}
+              onChange={(event) => setNewComment(event.target.value)}
+            />
+            <button onClick={addComment}>Add Comment</button>
           </div>
-        </div>
-      </div>
-      <div className="rightSide">
-        <div className="addCommentContainer">
-          <input
-            type="text"
-            placeholder="Comment..."
-            autoComplete="off"
-            value={newComment}
-            onChange={(event) => {
-              setNewComment(event.target.value);
-            }}
-          />
-          <button onClick={addComment}> Add Comment</button>
-        </div>
-        <div className="listOfComments">
-          {comments.map((comment, key) => {
-            return (
-              <div key={key} className="comment">
-  <div className="commentContent">
-    <p className="commentText">{comment.commentBody}</p>
-    <span className="commentMeta">Username: {comment.username}</span>
-  </div>
-  {authState.username === comment.username && (
-    <button className="deleteCommentButton" onClick={() => deleteComment(comment.id)}>X</button>
-  )}
-</div>
-            );
-          })}
+          {comments.map((comment) => (
+            <div className="commentCard" key={comment.id}>
+              <div className="commentText">{comment.commentBody}</div>
+              <div className="commentMeta">Username: {comment.username}</div>
+              {authState.username === comment.username && (
+                <button
+                  className="deleteButton"
+                  onClick={() => deleteComment(comment.id)}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </div>

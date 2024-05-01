@@ -1,107 +1,108 @@
 .postPage {
   display: flex;
-  flex-direction: column; /* Change to column layout for smaller screens */
-  width: 100%;
-  height: auto; /* Auto height for dynamic content */
-  overflow: hidden; /* Prevent overflow */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
 }
 
-.leftSide,
-.rightSide {
+.postContainer {
   width: 100%;
-  padding: 20px; /* Add padding for better spacing */
-  box-sizing: border-box; /* Include padding in width calculation */
-  overflow: hidden; /* Prevent overflow */
+  max-width: 800px;
+  padding: 20px;
 }
 
-.rightSide .addCommentContainer {
-  width: 100%;
-  margin-top: 15px; /* Adjusted margin top */
-  box-sizing: border-box; /* Include padding in width calculation */
-  overflow: hidden; /* Prevent overflow */
+.postCard {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease-in-out;
 }
 
-.addCommentContainer input,
-.addCommentContainer button {
-  width: calc(100% - 20px); /* Full width minus padding */
-  padding: 10px; /* Added padding for better appearance */
-  border: 1px solid #666; /* Dark border */
+.postCard:hover {
+  transform: translateY(-5px);
+}
+
+.postHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.username {
+  color: #777;
+}
+
+.body {
+  font-size: 18px;
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.addCommentContainer {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.addCommentContainer input[type="text"] {
+  flex: 1;
+  padding: 10px;
   border-radius: 5px;
-  margin-bottom: 10px; /* Added margin-bottom for spacing */
-  box-sizing: border-box; /* Include padding in width calculation */
-  background-color: #444; /* Dark background color */
-  color: #eee; /* Light text color */
-}
-
-.addCommentContainer input::placeholder {
-  color: #ccc; /* Lighter placeholder text color */
-}
-
-.addCommentContainer input:focus {
-  outline: none; /* Remove outline on focus */
-  border-color: #007bff; /* Border color on focus */
+  border: 1px solid #ccc;
+  font-size: 16px;
+  margin-right: 10px;
 }
 
 .addCommentContainer button {
-  width: calc(100% - 20px); /* Full width minus padding */
-  padding: 10px; /* Added padding for better appearance */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 5px;
-  background-color: #007bff; /* Button color */
-  color: #fff; /* Button text color */
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.addCommentContainer button:hover {
-  background-color: #0056b3; /* Darker button color on hover */
+.commentCard {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease-in-out;
 }
 
-.comment {
-  width: calc(100% - 40px); /* Full width minus padding */
-  box-sizing: border-box; /* Include padding in width calculation */
-  border-left: 3px solid #007bff; /* Add border to differentiate comments */
-  padding: 10px;
-  margin-bottom: 15px;
-}
-
-.commentContent {
-  flex: 1;
-  overflow: hidden; /* Prevent overflow */
+.commentCard:hover {
+  transform: translateY(-3px);
 }
 
 .commentText {
   margin-bottom: 5px;
+  font-size: 16px;
 }
 
 .commentMeta {
-  color: #666;
-  font-size: 0.8rem;
+  color: #777;
+  font-size: 14px;
 }
 
-.commentMeta .username {
-  color: #007bff; /* Change color of username */
-}
-
-
-.deleteCommentButton {
-  font-size: 1rem; /* Adjusted font size */
-  background-color: #333; /* Dark background color */
-  color: #fff; /* Light text color */
+.deleteButton {
+  background-color: transparent;
   border: none;
-  padding: 5px 10px; /* Added padding for better appearance */
-  border-radius: 5px;
+  color: #f44336;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 14px;
+  transition: color 0.3s ease-in-out;
 }
 
-.deleteCommentButton:hover {
-  background-color: #555; /* Darker background color on hover */
-}
-
-
-@media (max-width: 500px) {
-  .rightSide .addCommentContainer {
-    margin-top: 10px; /* Adjusted margin top */
-  }
+.deleteButton:hover {
+  color: #dc3545;
 }

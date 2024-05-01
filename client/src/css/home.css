@@ -1,44 +1,31 @@
 .container {
-  margin: 20px auto;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .filters {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 20px;
 }
 
 .filter {
-  display: flex;
-  align-items: center;
-}
-
-.sortLabel,
-.filterLabel {
+  flex: 1;
   margin-right: 10px;
 }
 
+.sortLabel, .filterLabel {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
 .filterInput {
+  width: 100%;
+  padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 200px;
-}
-
-.loader-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Adjust according to your layout */
-}
-
-
-.post {
-  margin-bottom: 20px;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  font-size: 16px;
 }
 
 .post-link {
@@ -46,35 +33,36 @@
   color: inherit;
 }
 
-.post-link:hover {
-  text-decoration: none;
+.post {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.post:hover {
+  transform: translateY(-5px);
 }
 
 .title {
   font-size: 20px;
   font-weight: bold;
-  color: #333;
+  margin-bottom: 10px;
 }
 
 .body {
-  margin-top: 10px;
-  color: #555;
-  cursor: pointer;
-}
-
-.body:hover {
-  background-color: #f0f0f0;
+  margin-bottom: 10px;
 }
 
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
 }
 
 .username a {
-  color: #333;
+  color: #007bff;
   text-decoration: none;
 }
 
@@ -83,20 +71,38 @@
   align-items: center;
 }
 
-.likeBttn,
-.unlikeBttn {
-  font-size: 20px;
-  color: #ccc;
-  margin-right: 5px;
+.likeBttn, .unlikeBttn {
   cursor: pointer;
+  font-size: 24px;
+  color: #777;
+  transition: color 0.3s ease-in-out;
 }
 
-.likeBttn:hover,
-.unlikeBttn:hover {
-  color: #ff6d00;
+.likeBttn:hover, .unlikeBttn:hover {
+  color: #007bff;
 }
 
 .label {
-  font-size: 16px;
-  color: #777;
+  margin-left: 5px;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .filter {
+    margin-bottom: 10px;
+  }
 }
